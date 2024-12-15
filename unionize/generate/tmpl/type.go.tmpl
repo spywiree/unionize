@@ -1,0 +1,24 @@
+{{ if .Tagged }}
+type {{ .EnumName }} {{ .EnumType }}
+
+const (
+	{{- range $index, $field := .Fields }}
+	{{ $.EnumName }}_{{ .Name }} {{ $.EnumName }} = {{ $index }}
+	{{- end }}
+)
+
+func (x {{ .EnumName }}) String() string {
+switch x {
+	{{- range $index, $field := .Fields }}
+	case {{ $index }}:
+		return "{{ .Name }}"
+	{{- end }}
+	default:
+		panic("unreachable")
+	}
+}
+{{ end }}
+
+func (u *{{ .Name }}) Type() {{ .EnumName }} {
+	return u.typ
+}
