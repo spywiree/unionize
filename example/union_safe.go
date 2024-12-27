@@ -25,25 +25,25 @@ const (
 
 func (x UnionSafeType) String() string {
 	switch x {
-	case 0:
+	case UnionSafeType_Uint64:
 		return "Uint64"
-	case 1:
+	case UnionSafeType_Int64:
 		return "Int64"
-	case 2:
+	case UnionSafeType_String:
 		return "String"
-	case 3:
+	case UnionSafeType_importTest1:
 		return "importTest1"
-	case 4:
+	case UnionSafeType_importTest2:
 		return "importTest2"
-	case 5:
+	case UnionSafeType_importTest3:
 		return "importTest3"
-	case 6:
+	case UnionSafeType_importTest4:
 		return "importTest4"
-	case 7:
+	case UnionSafeType_importTest5:
 		return "importTest5"
-	case 8:
+	case UnionSafeType_importTest6:
 		return "importTest6"
-	case 9:
+	case UnionSafeType_importTest7:
 		return "importTest7"
 	default:
 		panic("unreachable")

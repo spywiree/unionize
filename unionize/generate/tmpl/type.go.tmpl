@@ -10,7 +10,7 @@ const (
 func (x {{ .EnumName }}) String() string {
 switch x {
 	{{- range $index, $field := .Fields }}
-	case {{ $index }}:
+	case {{ $.EnumName }}_{{ .Name }}:
 		return "{{ .Name }}"
 	{{- end }}
 	default:
