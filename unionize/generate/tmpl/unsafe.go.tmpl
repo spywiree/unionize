@@ -19,10 +19,10 @@ type {{ .Name }} struct {
 }
 
 {{ range $index, $field := .Fields }}
-func (u {{ if not $.NoPtrRecv }}*{{ end }}{{ $.Name }}) {{ .Name }}() {{ .Type }} {
+func (u {{ if not $.NoPtrRecv }}*{{ end }}{{ $.Name }}) {{ .GetterName }}() {{ .Type }} {
 	return *(*{{ .Type }})(unsafe.Pointer(&u.data))
 }
-func (u *{{ $.Name}}) {{ .Name }}Put(v {{ .Type}}) {
+func (u *{{ $.Name}}) {{ .SetterName }}(v {{ .Type}}) {
 	{{- if $.Tagged }}
 	u.typ = {{ $index }}
 	{{- end }}

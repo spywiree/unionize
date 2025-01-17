@@ -71,7 +71,7 @@ type UnionSafe struct {
 func (u *UnionSafe) Uint64() uint64 {
 	return u._Uint64
 }
-func (u *UnionSafe) Uint64Put(v uint64) {
+func (u *UnionSafe) SetUint64(v uint64) {
 	u.typ = 0
 	u._Uint64 = v
 }
@@ -79,7 +79,7 @@ func (u *UnionSafe) Uint64Put(v uint64) {
 func (u *UnionSafe) Int64() int64 {
 	return u._Int64
 }
-func (u *UnionSafe) Int64Put(v int64) {
+func (u *UnionSafe) SetInt64(v int64) {
 	u.typ = 1
 	u._Int64 = v
 }
@@ -87,7 +87,7 @@ func (u *UnionSafe) Int64Put(v int64) {
 func (u *UnionSafe) String() string {
 	return u._String
 }
-func (u *UnionSafe) StringPut(v string) {
+func (u *UnionSafe) SetString(v string) {
 	u.typ = 2
 	u._String = v
 }
@@ -95,7 +95,7 @@ func (u *UnionSafe) StringPut(v string) {
 func (u *UnionSafe) importTest1() []bytes.Buffer {
 	return u._importTest1
 }
-func (u *UnionSafe) importTest1Put(v []bytes.Buffer) {
+func (u *UnionSafe) setImportTest1(v []bytes.Buffer) {
 	u.typ = 3
 	u._importTest1 = v
 }
@@ -103,7 +103,7 @@ func (u *UnionSafe) importTest1Put(v []bytes.Buffer) {
 func (u *UnionSafe) importTest2() [1]bytes.Buffer {
 	return u._importTest2
 }
-func (u *UnionSafe) importTest2Put(v [1]bytes.Buffer) {
+func (u *UnionSafe) setImportTest2(v [1]bytes.Buffer) {
 	u.typ = 4
 	u._importTest2 = v
 }
@@ -111,7 +111,7 @@ func (u *UnionSafe) importTest2Put(v [1]bytes.Buffer) {
 func (u *UnionSafe) importTest3() struct{ bytes.Buffer } {
 	return u._importTest3
 }
-func (u *UnionSafe) importTest3Put(v struct{ bytes.Buffer }) {
+func (u *UnionSafe) setImportTest3(v struct{ bytes.Buffer }) {
 	u.typ = 5
 	u._importTest3 = v
 }
@@ -119,7 +119,7 @@ func (u *UnionSafe) importTest3Put(v struct{ bytes.Buffer }) {
 func (u *UnionSafe) importTest4() interface{ Buffer() bytes.Buffer } {
 	return u._importTest4
 }
-func (u *UnionSafe) importTest4Put(v interface{ Buffer() bytes.Buffer }) {
+func (u *UnionSafe) setImportTest4(v interface{ Buffer() bytes.Buffer }) {
 	u.typ = 6
 	u._importTest4 = v
 }
@@ -127,7 +127,7 @@ func (u *UnionSafe) importTest4Put(v interface{ Buffer() bytes.Buffer }) {
 func (u *UnionSafe) importTest5() Dummy {
 	return u._importTest5
 }
-func (u *UnionSafe) importTest5Put(v Dummy) {
+func (u *UnionSafe) setImportTest5(v Dummy) {
 	u.typ = 7
 	u._importTest5 = v
 }
@@ -135,7 +135,7 @@ func (u *UnionSafe) importTest5Put(v Dummy) {
 func (u *UnionSafe) importTest6() template0.Template {
 	return u._importTest6
 }
-func (u *UnionSafe) importTest6Put(v template0.Template) {
+func (u *UnionSafe) setImportTest6(v template0.Template) {
 	u.typ = 8
 	u._importTest6 = v
 }
@@ -143,7 +143,7 @@ func (u *UnionSafe) importTest6Put(v template0.Template) {
 func (u *UnionSafe) importTest7() template1.Template {
 	return u._importTest7
 }
-func (u *UnionSafe) importTest7Put(v template1.Template) {
+func (u *UnionSafe) setImportTest7(v template1.Template) {
 	u.typ = 9
 	u._importTest7 = v
 }

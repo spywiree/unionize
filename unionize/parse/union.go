@@ -68,10 +68,6 @@ func (u Union) Imports() []PkgImport {
 	return x.Imports
 }
 
-type Field struct {
-	Name, Type string
-}
-
 func qual(pkg *types.Package) types.Qualifier {
 	if pkg == nil {
 		return nil

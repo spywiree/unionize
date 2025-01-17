@@ -40,7 +40,7 @@ func PrintJson(v ...any) {
 
 func main() {
 	var u Union
-	u.Int64Put(math.MinInt32)
+	u.SetInt64(math.MinInt32)
 	PrintJson(u.String())
 	PrintJson(u.Int64())
 	PrintJson(u.Uint64())
