@@ -67,6 +67,9 @@ func (u *Union) SetUint64(v uint64) {
 	u.typ = 0
 	*(*uint64)(unsafe.Pointer(&u.data)) = v
 }
+func (u *Union) Uint64Ptr() *uint64 {
+	return (*uint64)(unsafe.Pointer(&u.data))
+}
 
 func (u *Union) Int64() int64 {
 	return *(*int64)(unsafe.Pointer(&u.data))
@@ -74,6 +77,9 @@ func (u *Union) Int64() int64 {
 func (u *Union) SetInt64(v int64) {
 	u.typ = 1
 	*(*int64)(unsafe.Pointer(&u.data)) = v
+}
+func (u *Union) Int64Ptr() *int64 {
+	return (*int64)(unsafe.Pointer(&u.data))
 }
 
 func (u *Union) String() string {
@@ -83,6 +89,9 @@ func (u *Union) SetString(v string) {
 	u.typ = 2
 	*(*string)(unsafe.Pointer(&u.data)) = v
 }
+func (u *Union) StringPtr() *string {
+	return (*string)(unsafe.Pointer(&u.data))
+}
 
 func (u *Union) importTest1() []bytes.Buffer {
 	return *(*[]bytes.Buffer)(unsafe.Pointer(&u.data))
@@ -90,6 +99,9 @@ func (u *Union) importTest1() []bytes.Buffer {
 func (u *Union) setImportTest1(v []bytes.Buffer) {
 	u.typ = 3
 	*(*[]bytes.Buffer)(unsafe.Pointer(&u.data)) = v
+}
+func (u *Union) importTest1Ptr() *[]bytes.Buffer {
+	return (*[]bytes.Buffer)(unsafe.Pointer(&u.data))
 }
 
 func (u *Union) importTest2() [1]bytes.Buffer {
@@ -99,6 +111,9 @@ func (u *Union) setImportTest2(v [1]bytes.Buffer) {
 	u.typ = 4
 	*(*[1]bytes.Buffer)(unsafe.Pointer(&u.data)) = v
 }
+func (u *Union) importTest2Ptr() *[1]bytes.Buffer {
+	return (*[1]bytes.Buffer)(unsafe.Pointer(&u.data))
+}
 
 func (u *Union) importTest3() struct{ bytes.Buffer } {
 	return *(*struct{ bytes.Buffer })(unsafe.Pointer(&u.data))
@@ -106,6 +121,9 @@ func (u *Union) importTest3() struct{ bytes.Buffer } {
 func (u *Union) setImportTest3(v struct{ bytes.Buffer }) {
 	u.typ = 5
 	*(*struct{ bytes.Buffer })(unsafe.Pointer(&u.data)) = v
+}
+func (u *Union) importTest3Ptr() *struct{ bytes.Buffer } {
+	return (*struct{ bytes.Buffer })(unsafe.Pointer(&u.data))
 }
 
 func (u *Union) importTest4() interface{ Buffer() bytes.Buffer } {
@@ -115,6 +133,9 @@ func (u *Union) setImportTest4(v interface{ Buffer() bytes.Buffer }) {
 	u.typ = 6
 	*(*interface{ Buffer() bytes.Buffer })(unsafe.Pointer(&u.data)) = v
 }
+func (u *Union) importTest4Ptr() *interface{ Buffer() bytes.Buffer } {
+	return (*interface{ Buffer() bytes.Buffer })(unsafe.Pointer(&u.data))
+}
 
 func (u *Union) importTest5() Dummy {
 	return *(*Dummy)(unsafe.Pointer(&u.data))
@@ -122,6 +143,9 @@ func (u *Union) importTest5() Dummy {
 func (u *Union) setImportTest5(v Dummy) {
 	u.typ = 7
 	*(*Dummy)(unsafe.Pointer(&u.data)) = v
+}
+func (u *Union) importTest5Ptr() *Dummy {
+	return (*Dummy)(unsafe.Pointer(&u.data))
 }
 
 func (u *Union) importTest6() template0.Template {
@@ -131,6 +155,9 @@ func (u *Union) setImportTest6(v template0.Template) {
 	u.typ = 8
 	*(*template0.Template)(unsafe.Pointer(&u.data)) = v
 }
+func (u *Union) importTest6Ptr() *template0.Template {
+	return (*template0.Template)(unsafe.Pointer(&u.data))
+}
 
 func (u *Union) importTest7() template1.Template {
 	return *(*template1.Template)(unsafe.Pointer(&u.data))
@@ -138,4 +165,7 @@ func (u *Union) importTest7() template1.Template {
 func (u *Union) setImportTest7(v template1.Template) {
 	u.typ = 9
 	*(*template1.Template)(unsafe.Pointer(&u.data)) = v
+}
+func (u *Union) importTest7Ptr() *template1.Template {
+	return (*template1.Template)(unsafe.Pointer(&u.data))
 }

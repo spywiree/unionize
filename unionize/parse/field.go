@@ -24,3 +24,7 @@ func (f *Field) SetterName() string {
 		return string(buf)
 	}
 }
+
+func (f *Field) PointerName() string {
+	return f.Name + "Ptr"
+}

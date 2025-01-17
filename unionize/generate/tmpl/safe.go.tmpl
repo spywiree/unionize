@@ -29,4 +29,7 @@ func (u *{{ $.Name}}) {{ .SetterName }}(v {{ .Type}}) {
 	{{- end }}
 	u._{{ .Name }} = v
 }
+func (u *{{ $.Name }}) {{ .PointerName }}() *{{ .Type }} {
+	return &u._{{ .Name }}
+}
 {{ end }} 

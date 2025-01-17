@@ -28,4 +28,7 @@ func (u *{{ $.Name}}) {{ .SetterName }}(v {{ .Type}}) {
 	{{- end }}
 	*(*{{ .Type }})(unsafe.Pointer(&u.data)) = v
 }
+func (u *{{ $.Name }}) {{ .PointerName }}() *{{ .Type }} {
+	return (*{{ .Type }})(unsafe.Pointer(&u.data))
+}
 {{ end }} 
