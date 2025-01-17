@@ -13,13 +13,7 @@ import (
 //go:embed tmpl
 var fsys embed.FS
 
-var tmpl = func() *template.Template {
-	tmpl, err := template.ParseFS(fsys, "tmpl/*.go.tmpl")
-	if err != nil {
-		panic(err)
-	}
-	return tmpl
-}()
+var tmpl = template.Must(template.ParseFS(fsys, "tmpl/*.go.tmpl"))
 
 type UnionData struct {
 	PackageName string
