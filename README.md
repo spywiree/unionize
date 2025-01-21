@@ -5,16 +5,16 @@
 A fork of [zyedidia/unionize](https://github.com/zyedidia/unionize).
 
 ### Install:
+
 ```
-go install github.com/spywiree-priv/unionize@latest
+go install github.com/spywiree/unionize@latest
 ```
 
 ### Changes:
 
-- Added an option to generate tagged unions.  
-- Added an option to disable using pointer receivers in getters.  
-- Fixed several bugs.  
-
+- Added an option to generate tagged unions.
+- Added an option to disable using pointer receivers in getters.
+- Fixed several bugs.
 
 ### Usage:
 

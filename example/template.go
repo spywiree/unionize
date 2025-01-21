@@ -9,7 +9,7 @@ import (
 type Dummy struct{}
 
 //go:generate unionize . template union.go Union -W -T
-//go:generate unionize github.com/spywiree-priv/unionize/example template union_safe.go UnionSafe -W -T -S
+//go:generate unionize github.com/spywiree/unionize/example template union_safe.go UnionSafe -W -T -S
 //go:generate unionize template.go template union_safe.go UnionSafe -W -T -S
 //nolint:all
 type template struct {

@@ -1,4 +1,4 @@
-module github.com/spywiree-priv/unionize
+module github.com/spywiree/unionize
 
 go 1.23.3
 

@@ -5,8 +5,8 @@ import (
 	"os"
 
 	"github.com/alecthomas/kong"
-	"github.com/spywiree-priv/unionize/unionize/generate"
-	"github.com/spywiree-priv/unionize/unionize/parse"
+	"github.com/spywiree/unionize/unionize/generate"
+	"github.com/spywiree/unionize/unionize/parse"
 )
 
 var CLI struct {

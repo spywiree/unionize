@@ -7,7 +7,7 @@ import (
 	"math"
 	"text/template"
 
-	"github.com/spywiree-priv/unionize/unionize/parse"
+	"github.com/spywiree/unionize/unionize/parse"
 )
 
 //go:embed tmpl
