@@ -88,7 +88,7 @@ func (x *Importer) GetTypeImports(typ types.Type) {
 }
 
 func (x *Importer) addImport(pkg *types.Package) {
-	if x.pkg == pkg || x.paths.ContainsOne(pkg.Path()) {
+	if x.pkg == pkg || pkg == nil || x.paths.ContainsOne(pkg.Path()) {
 		return
 	}
 
