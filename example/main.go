@@ -10,7 +10,7 @@ import (
 func GetInt(v Union) int64 {
 	switch v.Type() {
 	case UnionType_Uint64:
-		return int64(v.Uint64())
+		return int64(v.Uint64()) //#nosec G115
 	case UnionType_Int64:
 		return v.Int64()
 	case UnionType_String:

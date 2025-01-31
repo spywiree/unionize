@@ -62,7 +62,7 @@ func main() {
 	if err != nil {
 		log.Fatalln("error with union generation:", err)
 	}
-	err = os.WriteFile(CLI.Output, data, 0666)
+	err = os.WriteFile(CLI.Output, data, 0600)
 	if err != nil {
 		log.Fatalln(err)
 	}
