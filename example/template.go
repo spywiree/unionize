@@ -8,9 +8,8 @@ import (
 
 type Dummy struct{}
 
-//go:generate unionize . template union.go Union -W -T
-//go:generate unionize github.com/spywiree/unionize/example template union_safe.go UnionSafe -W -T -S
-//go:generate unionize template.go template union_safe.go UnionSafe -W -T -S
+//go:generate go run github.com/spywiree/unionize@latest github.com/spywiree/unionize/example template union_safe.go UnionSafe -W -T -S
+//go:generate go run github.com/spywiree/unionize@latest template.go template union_safe.go UnionSafe -W -T -S
 //nolint:all
 type template struct {
 	Uint64 uint64
