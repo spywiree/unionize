@@ -9,7 +9,7 @@ import (
 	"github.com/spywiree/unionize/unionize/parse"
 )
 
-var CLI struct {
+var cli struct {
 	Input        string `arg:"" help:"input package name"`
 	TemplateName string `arg:"" help:"input template type name"`
 	Output       string `arg:"" type:"path" help:"output file name"`
@@ -23,7 +23,7 @@ var CLI struct {
 }
 
 func main() {
-	_ = kong.Parse(&CLI,
+	_ = kong.Parse(&cli,
 		kong.Name("unionize"),
 		kong.Description("A tool for generating unions in Go"),
 		kong.UsageOnError(),
@@ -35,26 +35,26 @@ func main() {
 		),
 	)
 
-	pkg := parse.LoadPackage(CLI.Warn, CLI.Input)
-	u := parse.FindUnion(pkg, CLI.TemplateName)
+	pkg := parse.LoadPackage(cli.Warn, cli.Input)
+	u := parse.FindUnion(pkg, cli.TemplateName)
 	sz, align := u.Size()
 	ud := generate.UnionData{
-		PackageName: CLI.OutputPkg,
+		PackageName: cli.OutputPkg,
 		Imports:     u.Imports(),
 
-		Name:    CLI.UnionName,
+		Name:    cli.UnionName,
 		BufSize: u.BufSize(sz, align),
 		BufType: u.BufType(sz, align),
 
-		Tagged:    CLI.Tagged,
-		NoPtrRecv: CLI.NoPtrRecv,
+		Tagged:    cli.Tagged,
+		NoPtrRecv: cli.NoPtrRecv,
 
 		Fields: u.Fields(),
 	}
 
 	var data []byte
 	var err error
-	if !CLI.Safe {
+	if !cli.Safe {
 		data, err = ud.GenerateUnsafe()
 	} else {
 		data, err = ud.GenerateSafe()
@@ -62,7 +62,7 @@ func main() {
 	if err != nil {
 		log.Fatalln("error with union generation:", err)
 	}
-	err = os.WriteFile(CLI.Output, data, 0600)
+	err = os.WriteFile(cli.Output, data, 0600)
 	if err != nil {
 		log.Fatalln(err)
 	}
