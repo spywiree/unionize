@@ -1,6 +1,6 @@
 module github.com/spywiree/unionize
 
-go 1.23.6
+go 1.24.0
 
 require (
 	github.com/alecthomas/kong v1.8.0
