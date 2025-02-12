@@ -4,13 +4,13 @@ import (
 	"go/types"
 	"strconv"
 
-	mapset "github.com/deckarep/golang-set/v2"
+	"github.com/hashicorp/go-set/v3"
 )
 
 type Importer struct {
 	Imports      []PkgImport
 	pkg          *types.Package
-	names, paths mapset.Set[string]
+	names, paths *set.Set[string]
 }
 
 type PkgImport struct {
@@ -20,8 +20,8 @@ type PkgImport struct {
 func NewImporter(pkg *types.Package) Importer {
 	return Importer{
 		pkg:   pkg,
-		names: mapset.NewThreadUnsafeSet[string](),
-		paths: mapset.NewThreadUnsafeSet[string](),
+		names: set.New[string](0),
+		paths: set.New[string](0),
 	}
 }
 
@@ -88,12 +88,12 @@ func (x *Importer) GetTypeImports(typ types.Type) {
 }
 
 func (x *Importer) addImport(pkg *types.Package) {
-	if x.pkg == pkg || pkg == nil || x.paths.ContainsOne(pkg.Path()) {
+	if x.pkg == pkg || pkg == nil || x.paths.Contains(pkg.Path()) {
 		return
 	}
 
 	nameExists := func(name string) bool {
-		return x.names.ContainsOne(name) || x.pkg.Scope().Lookup(name) != nil
+		return x.names.Contains(name) || x.pkg.Scope().Lookup(name) != nil
 	}
 	if nameExists(pkg.Name()) {
 		for i := uint64(0); true; i++ {
@@ -105,7 +105,7 @@ func (x *Importer) addImport(pkg *types.Package) {
 		}
 	}
 
-	x.names.Add(pkg.Name())
-	x.paths.Add(pkg.Path())
+	x.names.Insert(pkg.Name())
+	x.paths.Insert(pkg.Path())
 	x.Imports = append(x.Imports, PkgImport{Name: pkg.Name(), Path: pkg.Path()})
 }
