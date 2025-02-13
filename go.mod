@@ -3,7 +3,7 @@ module github.com/spywiree/unionize
 go 1.24.0
 
 require (
-	github.com/alecthomas/kong v1.8.0
+	github.com/alecthomas/kong v1.8.1
 	github.com/hashicorp/go-set/v3 v3.0.0
 	golang.org/x/tools v0.30.0
 )
