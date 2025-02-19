@@ -1,0 +1,56 @@
+package {{$.Package}}
+
+import (
+	"unsafe"
+	{{- range $i := $.ImportsIter}}
+	{{$i.Name}} "{{$i.Path}}"
+	{{- end}}
+)
+
+{{if $.Tagged}}
+type {{$.EnumName}} {{$.EnumType}}
+
+const (
+	{{- range $i, $m := $.Members}}
+	{{$.EnumMemberName $m}} {{$.EnumName}} = {{$i}}
+	{{- end}}
+)
+
+func (x {{$.EnumName}}) String() string {
+	switch x {
+	{{- range $m := $.Members}}
+	case {{$.EnumMemberName $m}}:
+		return "{{$m.Name}}"
+	{{- end}}
+	default:
+		panic("unreachable")
+	}
+}
+
+func (u *{{$.Name}}) Type() {{$.EnumName}} {
+	return u.typ
+}
+{{end}}
+
+type {{$.Name}} struct {
+	{{- if $.Tagged}}
+	typ {{$.EnumName}}
+	{{- end}}
+	data {{$.BufferType}}
+}
+
+{{range $i, $m := $.Members}}
+{{$typ := $m.TypeString $.Union}}
+func (u *{{$.Name}}) {{$.GetterName $m}}() {{$typ}} {
+	return *(*{{$typ}})(unsafe.Pointer(&u.data))
+}
+func (u *{{$.Name}}) {{$.SetterName $m}}(v {{$typ}}) {
+	{{- if $.Tagged}}
+	u.typ = {{$i}}
+	{{- end}}
+	*(*{{$typ}})(unsafe.Pointer(&u.data)) = v
+}
+func (u *{{$.Name}}) {{$.PointerName $m}}() *{{$typ}} {
+	return (*{{$typ}})(unsafe.Pointer(&u.data))
+}
+{{end}}
