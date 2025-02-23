@@ -20,7 +20,7 @@ type cli_t struct {
 	Tagged bool `short:"T" help:"generate tagged union"`
 }
 
-func (cli *cli_t) Run(ctx *kong.Context) error {
+func (cli *cli_t) Run() error {
 	src, err := parse.LoadPackage(
 		cli.Input,
 		packages.LoadSyntax,
