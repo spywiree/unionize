@@ -105,9 +105,7 @@ func Parse(pkg *packages.Package, typ *types.Struct) *Union {
 	u.pkgNames = bimap.NewBiMap[string, string]()
 
 	u.Imports = make(map[string]*types.Package)
-	for field := range typ.Fields() {
-		TypeImports(field.Type(), pkg.Types, u.Imports)
-	}
+	TypeImports(typ, pkg.Types, u.Imports)
 
 	u.Members = make([]Member, 0, typ.NumFields())
 	for field := range typ.Fields() {
