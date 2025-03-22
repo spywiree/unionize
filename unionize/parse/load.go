@@ -38,11 +38,10 @@ func PkgError(pkg *packages.Package) error {
 		sb.WriteString("\n")
 	}
 
-	if sb.Len() != 0 {
-		return errors.New(sb.String())
-	} else {
+	if sb.Len() == 0 {
 		return nil
 	}
+	return errors.New(sb.String())
 }
 
 func FindAndParse(pkg *packages.Package, name string) (*Union, error) {
