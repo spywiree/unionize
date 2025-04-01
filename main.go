@@ -71,7 +71,7 @@ func (cli *cli_t) Run() error {
 		if err != nil {
 			return err
 		}
-		defer f.Close()
+		defer f.Close() //nolint:errcheck
 	} else {
 		f = os.Stdout
 	}
