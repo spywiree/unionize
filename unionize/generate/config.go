@@ -19,6 +19,9 @@ func (ud *UnionData) EnumMemberName(m *parse.Member) string {
 }
 
 func (ud *UnionData) GetterName(m *parse.Member) string {
+	if m.Name == "String" || m.Name == "GoString" {
+		return "Get" + m.Name
+	}
 	return m.Name
 }
 
