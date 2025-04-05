@@ -53,6 +53,13 @@ func (u *{{$.Name}}) {{$.SetterName $m}}(v {{$typ}}) {
 func (u *{{$.Name}}) {{$.PointerName $m}}() *{{$typ}} {
 	return (*{{$typ}})(unsafe.Pointer(&u.data))
 }
+func (u *{{$.Name}}) {{$.OkName $m}}() ({{$typ}}, bool) {
+	if u.Type() == {{$.EnumMemberName $m}} {
+		return u.{{$.GetterName $m}}(), true
+	}
+	var zero {{$typ}}
+	return zero, false
+}
 {{end}}
 
 func (u *{{$.Name}}) Interface() any {

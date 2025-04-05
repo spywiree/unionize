@@ -34,3 +34,7 @@ func (ud *UnionData) SetterName(m *parse.Member) string {
 func (ud *UnionData) PointerName(m *parse.Member) string {
 	return m.Name + "Ptr"
 }
+
+func (ud *UnionData) OkName(m *parse.Member) string {
+	return m.Name + "Ok"
+}
