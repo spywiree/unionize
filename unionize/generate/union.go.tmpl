@@ -39,14 +39,14 @@ type {{$.Name}} struct {
 	data {{$.BufferType}}
 }
 
-{{range $i, $m := $.Members}}
+{{range $m := $.Members}}
 {{$typ := $m.TypeString $.Union}}
 func (u *{{$.Name}}) {{$.GetterName $m}}() {{$typ}} {
 	return *(*{{$typ}})(unsafe.Pointer(&u.data))
 }
 func (u *{{$.Name}}) {{$.SetterName $m}}(v {{$typ}}) {
 	{{- if $.Tagged}}
-	u.typ = {{$i}}
+	u.typ = {{$.EnumMemberName $m}}
 	{{- end}}
 	*(*{{$typ}})(unsafe.Pointer(&u.data)) = v
 }

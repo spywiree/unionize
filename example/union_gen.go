@@ -38,7 +38,7 @@ func (u *Union) Uint() uint64 {
 	return *(*uint64)(unsafe.Pointer(&u.data))
 }
 func (u *Union) SetUint(v uint64) {
-	u.typ = 0
+	u.typ = UnionUint
 	*(*uint64)(unsafe.Pointer(&u.data)) = v
 }
 func (u *Union) UintPtr() *uint64 {
@@ -49,7 +49,7 @@ func (u *Union) Int() int64 {
 	return *(*int64)(unsafe.Pointer(&u.data))
 }
 func (u *Union) SetInt(v int64) {
-	u.typ = 1
+	u.typ = UnionInt
 	*(*int64)(unsafe.Pointer(&u.data)) = v
 }
 func (u *Union) IntPtr() *int64 {
@@ -60,7 +60,7 @@ func (u *Union) GetString() string {
 	return *(*string)(unsafe.Pointer(&u.data))
 }
 func (u *Union) SetString(v string) {
-	u.typ = 2
+	u.typ = UnionString
 	*(*string)(unsafe.Pointer(&u.data)) = v
 }
 func (u *Union) StringPtr() *string {
