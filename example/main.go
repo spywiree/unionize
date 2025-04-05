@@ -14,7 +14,7 @@ func GetInt(v Union) int64 {
 	case UnionInt:
 		return v.Int()
 	case UnionString:
-		d, _ := strconv.Atoi(v.String())
+		d, _ := strconv.Atoi(v.GetString())
 		return int64(d)
 	default:
 		panic("unreachable")
@@ -41,7 +41,7 @@ func PrintJson(v ...any) {
 func main() {
 	var u Union
 	u.SetInt(math.MinInt32)
-	PrintJson(u.String())
+	PrintJson(u.GetString())
 	PrintJson(u.Int())
 	PrintJson(u.Uint())
 	PrintJson(u.Type(), u.Type().String())

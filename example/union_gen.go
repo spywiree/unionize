@@ -56,7 +56,7 @@ func (u *Union) IntPtr() *int64 {
 	return (*int64)(unsafe.Pointer(&u.data))
 }
 
-func (u *Union) String() string {
+func (u *Union) GetString() string {
 	return *(*string)(unsafe.Pointer(&u.data))
 }
 func (u *Union) SetString(v string) {
