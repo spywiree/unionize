@@ -66,3 +66,16 @@ func (u *Union) SetString(v string) {
 func (u *Union) StringPtr() *string {
 	return (*string)(unsafe.Pointer(&u.data))
 }
+
+func (u *Union) Interface() any {
+	switch u.Type() {
+	case UnionUint:
+		return u.Uint()
+	case UnionInt:
+		return u.Int()
+	case UnionString:
+		return u.GetString()
+	default:
+		panic("unreachable")
+	}
+}

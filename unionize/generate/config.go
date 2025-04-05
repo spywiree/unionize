@@ -20,7 +20,7 @@ func (ud *UnionData) EnumMemberName(m *parse.Member) string {
 
 func (ud *UnionData) GetterName(m *parse.Member) string {
 	switch m.Name {
-	case "String", "GoString", "Type":
+	case "String", "GoString", "Type", "Interface":
 		return "Get" + m.Name
 	default:
 		return m.Name

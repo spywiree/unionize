@@ -54,3 +54,14 @@ func (u *{{$.Name}}) {{$.PointerName $m}}() *{{$typ}} {
 	return (*{{$typ}})(unsafe.Pointer(&u.data))
 }
 {{end}}
+
+func (u *{{$.Name}}) Interface() any {
+	switch u.Type() {
+	{{- range $m := $.Members}}
+	case {{$.EnumMemberName $m}}:
+		return u.{{$.GetterName $m}}()
+	{{- end}}
+	default:
+		panic("unreachable")
+	}
+}
