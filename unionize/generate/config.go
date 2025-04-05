@@ -19,10 +19,12 @@ func (ud *UnionData) EnumMemberName(m *parse.Member) string {
 }
 
 func (ud *UnionData) GetterName(m *parse.Member) string {
-	if m.Name == "String" || m.Name == "GoString" {
+	switch m.Name {
+	case "String", "GoString", "Type":
 		return "Get" + m.Name
+	default:
+		return m.Name
 	}
-	return m.Name
 }
 
 func (ud *UnionData) SetterName(m *parse.Member) string {
