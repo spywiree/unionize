@@ -54,6 +54,7 @@ func (u *{{$.Name}}) {{$.SetterName $m}}(v {{$typ}}) {
 func (u *{{$.Name}}) {{$.PointerName $m}}() *{{$typ}} {
 	return (*{{$typ}})(unsafe.Pointer(&u.data))
 }
+{{if $.Tagged}}
 func (u *{{$.Name}}) {{$.OkName $m}}() ({{$typ}}, bool) {
 	if u.Type() == {{$.EnumMemberName $m}} {
 		return u.{{$.GetterName $m}}(), true
@@ -62,7 +63,9 @@ func (u *{{$.Name}}) {{$.OkName $m}}() ({{$typ}}, bool) {
 	return zero, false
 }
 {{end}}
+{{end}}
 
+{{if $.Tagged}}
 func (u *{{$.Name}}) Interface() any {
 	switch u.Type() {
 	{{- range $m := $.Members}}
@@ -73,3 +76,4 @@ func (u *{{$.Name}}) Interface() any {
 		panic("unreachable")
 	}
 }
+{{end}}
